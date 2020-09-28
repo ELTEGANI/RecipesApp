@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="recipeItem"
+            type="com.ahmedalaa.recipes.data.remote.response.RecipeItem" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.details.RecipeDetailsFragment">
+
+            <ImageView
+                android:id="@+id/recipe_img"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_160sdp"
+                android:contentDescription="@string/recipe_img_cd"
+                android:scaleType="fitXY"
+                load="@{recipeItem.image}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/recipe_title"
+                android:layout_width="0dp"
+                android:textAlignment="center"
+                android:background="@color/gray_transparent"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@{recipeItem.name}"
+                android:textSize="@dimen/text_header_size_x1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/recipe_img" />
+
+            <TextView
+                android:id="@+id/calories_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                hideIfEmpty="@{recipeItem.calories}"
+                android:text="@string/calories_title"
+                style="@style/TextviewHeader"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_title"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+
+            <TextView
+                android:id="@+id/recipe_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{recipeItem.calories}"
+                android:textSize="@dimen/text_size"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@id/calories_tv"
+                app:layout_constraintEnd_toEndOf="@id/calories_tv"
+                app:layout_constraintTop_toBottomOf="@+id/calories_tv"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <TextView
+                android:id="@+id/fats_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fats_title"
+                hideIfEmpty="@{recipeItem.fats}"
+
+
+                style="@style/TextviewHeader"
+                app:layout_constraintEnd_toStartOf="@id/protien_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/protien_tv"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <TextView
+                android:id="@+id/recipe_fats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{recipeItem.fats}"
+
+                android:textSize="@dimen/text_size"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@id/fats_tv"
+                app:layout_constraintEnd_toEndOf="@id/fats_tv"
+                app:layout_constraintTop_toBottomOf="@+id/fats_tv"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+
+            <TextView
+                android:id="@+id/protien_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                hideIfEmpty="@{recipeItem.proteins}"
+                android:text="@string/proteins_title"
+                style="@style/TextviewHeader"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_calories"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+
+            <TextView
+                android:id="@+id/recipe_protiens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{recipeItem.proteins}"
+                android:textSize="@dimen/text_size"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@id/protien_tv"
+                app:layout_constraintEnd_toEndOf="@id/protien_tv"
+                app:layout_constraintTop_toBottomOf="@+id/protien_tv"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <TextView
+                android:id="@+id/carbons_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/carbons_title"
+                hideIfEmpty="@{recipeItem.carbos}"
+
+                style="@style/TextviewHeader"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/protien_tv"
+                app:layout_constraintTop_toTopOf="@id/fats_tv"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <TextView
+                android:id="@+id/recipe_carbons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{recipeItem.carbos}"
+                android:textSize="@dimen/text_size"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@id/carbons_tv"
+                app:layout_constraintEnd_toEndOf="@id/carbons_tv"
+                app:layout_constraintTop_toBottomOf="@+id/carbons_tv"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <TextView
+                android:id="@+id/recipe_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@{recipeItem.description}"
+                android:textSize="@dimen/text_size"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/recipe_protiens" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

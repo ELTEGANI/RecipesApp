@@ -1,4 +1,17 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+    <dimen name="fab_margin">@dimen/_16sdp</dimen>
+    <dimen name="text_margin">@dimen/_16sdp</dimen>
+    <dimen name="activity_horizontal_padding">@dimen/_16sdp</dimen>
+    <dimen name="activity_withRecycler_horizontal_padding">@dimen/_12sdp</dimen>
+
+    <dimen name="activity_vertical_padding">@dimen/_8sdp</dimen>
+    <dimen name="recycler_item_margin">@dimen/_4sdp</dimen>
+
+    <dimen name="text_size">@dimen/_14ssp</dimen>
+    <dimen name="text_size_bigger">@dimen/_16ssp</dimen>
+
+    <dimen name="text_header_size">@dimen/_18ssp</dimen>
+
+    <dimen name="text_header_size_x1">@dimen/_20ssp</dimen>
+
 </resources>

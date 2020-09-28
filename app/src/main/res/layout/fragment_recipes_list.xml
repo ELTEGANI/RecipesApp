@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:name="com.ahmedalaa.recipes.ui.RecipesListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/activity_withRecycler_horizontal_padding"
+        android:paddingTop="@dimen/activity_vertical_padding"
+        android:paddingEnd="@dimen/activity_withRecycler_horizontal_padding"
+        android:paddingBottom="@dimen/activity_vertical_padding">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.list.RecipesListFragment"
+            tools:itemCount="10"
+            app:spanCount="2"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_recipe" />
+
+        <include
+            android:id="@+id/loading_dialog"
+            layout="@layout/progress_dialog" />
+    </FrameLayout>
+</layout>
+
+
+

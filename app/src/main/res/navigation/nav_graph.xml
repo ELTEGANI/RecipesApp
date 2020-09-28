@@ -3,26 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/gamesFragment">
+    app:startDestination="@id/recipeListFragment">
 
 
     <fragment
-        android:id="@+id/gamesFragment"
-        android:name="com.ahmedalaa.gamesapp.ui.list.GamesFragment"
+        android:id="@+id/recipeListFragment"
+        android:name="com.ahmedalaa.recipes.ui.list.RecipesListFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_item_list" >
+        tools:layout="@layout/fragment_recipes_list" >
         <action
             android:id="@+id/action_gamesFragment_to_gamesDetailsFragment"
-            app:destination="@id/gamesDetailsFragment"
+            app:destination="@id/recipeDetailsFragment"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/fragment_fade_exit"
             app:popExitAnim="@anim/fragment_fade_enter"
-            app:popUpTo="@id/gamesFragment" />
+            app:popUpTo="@id/recipeListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/gamesDetailsFragment"
-        android:name="com.ahmedalaa.gamesapp.ui.details.GamesDetailsFragment"
+        android:id="@+id/recipeDetailsFragment"
+        android:name="com.ahmedalaa.recipes.ui.details.RecipeDetailsFragment"
         android:label=""
-        tools:layout="@layout/games_details_fragment" />
+        tools:layout="@layout/fragment_recipes_details" >
+        <argument
+            android:name="reciept"
+            app:argType="com.ahmedalaa.recipes.data.RecipeItem" />
+    </fragment>
 </navigation>
