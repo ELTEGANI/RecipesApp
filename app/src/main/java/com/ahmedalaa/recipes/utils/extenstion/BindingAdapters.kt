@@ -8,7 +8,7 @@ import com.ahmedalaa.recipes.di.AppModule
 import com.ahmedalaa.recipes.di.MyCustomComponentBuilder
 import javax.inject.Inject
 
-@BindingAdapter("load")
+@BindingAdapter("imageUrl")
 fun ImageView.load( link: String) {
     AppModule.provideGlide(this.context).load(link).into(this)
 }

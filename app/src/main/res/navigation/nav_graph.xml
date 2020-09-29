@@ -25,8 +25,9 @@
         android:name="com.ahmedalaa.recipes.ui.details.RecipeDetailsFragment"
         android:label=""
         tools:layout="@layout/fragment_recipes_details" >
+
         <argument
-            android:name="reciept"
-            app:argType="com.ahmedalaa.recipes.data.RecipeItem" />
+            android:name="recipe"
+            app:argType="com.ahmedalaa.recipes.data.model.Recipe" />
     </fragment>
 </navigation>

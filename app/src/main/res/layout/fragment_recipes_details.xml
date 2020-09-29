@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="recipeItem"
-            type="com.ahmedalaa.recipes.data.remote.response.RecipeItem" />
+            type="com.ahmedalaa.recipes.data.model.Recipe" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -27,7 +27,7 @@
                 android:layout_height="@dimen/_160sdp"
                 android:contentDescription="@string/recipe_img_cd"
                 android:scaleType="fitXY"
-                load="@{recipeItem.image}"
+                imageUrl="@{recipeItem.image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

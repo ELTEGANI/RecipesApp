@@ -8,6 +8,8 @@ import com.ahmedalaa.recipes.data.local.RecipeDatabase
 import com.ahmedalaa.recipes.data.remote.RecipeApi
 import com.ahmedalaa.recipes.utils.RequestInterceptor
 import com.ahmedalaa.recipes.other.Constant
+import com.ahmedalaa.recipes.repository.IRecipesRepository
+import com.ahmedalaa.recipes.repository.RecipesRepository
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.squareup.moshi.Moshi
@@ -28,7 +30,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRoomDb(@ApplicationContext context: Context) =
+    fun provideRoomDb(@ApplicationContext context: Context):RecipeDatabase =
         Room.databaseBuilder(context, RecipeDatabase::class.java, "recipe-db")
             .fallbackToDestructiveMigration().build()
 
@@ -36,6 +38,7 @@ object AppModule {
     @Provides
     fun provideOkHttp() = OkHttpClient().newBuilder()
         .addInterceptor(RequestInterceptor())
+        .build()
 
     @Singleton
     @Provides
@@ -59,5 +62,11 @@ object AppModule {
     @Provides
     fun provideGamesApi(retrofit: Retrofit) = retrofit.create(RecipeApi::class.java)
 
+    @Singleton
+    @Provides
+    fun provideRecipesRepository(
+        recipeDatabase: RecipeDatabase,
+        recipeApi: RecipeApi
+    ): IRecipesRepository = RecipesRepository(recipeDatabase, recipeApi)
 
 }

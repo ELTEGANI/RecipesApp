@@ -14,4 +14,6 @@
 
     <dimen name="text_header_size_x1">@dimen/_20ssp</dimen>
 
+    <dimen name="card_radius">@dimen/_20sdp</dimen>
+    <dimen name="card_elevation">@dimen/_4sdp</dimen>
 </resources>

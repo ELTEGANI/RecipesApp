@@ -8,4 +8,6 @@
     <string name="proteins_title">Proteins</string>
     <string name="carbons_title">Carbons</string>
     <string name="calories_title">Calories</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="retry">Retry</string>
 </resources>

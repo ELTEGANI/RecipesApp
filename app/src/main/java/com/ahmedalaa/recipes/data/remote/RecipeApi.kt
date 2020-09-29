@@ -16,6 +16,7 @@
 
 package com.ahmedalaa.recipes.data.remote
 
+import com.ahmedalaa.recipes.data.model.Recipe
 import com.ahmedalaa.recipes.data.remote.response.RecipeResponse
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.Response
@@ -24,5 +25,5 @@ import retrofit2.http.GET
 interface RecipeApi {
 
   @GET("recipes.json")
-  suspend fun fetchRecipeList(): Response<RecipeResponse>
+  suspend fun fetchRecipeList(): Response<List<Recipe>>
 }

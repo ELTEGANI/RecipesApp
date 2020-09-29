@@ -1,37 +1,58 @@
 package com.ahmedalaa.recipes.ui.list.adapter
 
-import androidx.recyclerview.widget.RecyclerView
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.ahmedalaa.recipes.R
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.ahmedalaa.recipes.data.model.Recipe
+import com.ahmedalaa.recipes.databinding.ItemRecipeBinding
+import org.jetbrains.annotations.NotNull
 
+class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
 
-class RecipesListAdapter(
-    private val values: List<GamePosterReponse>
-) : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
+    lateinit var onItemClick: (recipe: Recipe) -> Unit
 
+    val itemCallback = object : DiffUtil.ItemCallback<Recipe>() {
+        override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+    }
+    val differ = AsyncListDiffer(this, itemCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_item, parent, false)
+        val view = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
+
+    var recipe: List<Recipe>
+        get() = differ.currentList
+        set(value) = differ.submitList(value)
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = recipe[position]
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = recipe.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
-        val contentView: TextView = view.findViewById(R.id.content)
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+    inner class ViewHolder(private val itemRecipeBinding: @NotNull ItemRecipeBinding) :
+        RecyclerView.ViewHolder(itemRecipeBinding.root) {
+        fun bind(recipe: Recipe) {
+            itemRecipeBinding.apply {
+                this.recipe = recipe
+                executePendingBindings()
+                root.setOnClickListener {
+                    if (this@RecipesListAdapter::onItemClick.isInitialized)
+                        onItemClick(recipe)
+                }
+            }
         }
     }
 }
