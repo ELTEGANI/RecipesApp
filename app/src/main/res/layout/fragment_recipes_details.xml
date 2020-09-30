@@ -28,6 +28,7 @@
                 android:contentDescription="@string/recipe_img_cd"
                 android:scaleType="fitXY"
                 imageUrl="@{recipeItem.image}"
+                android:transitionName="@string/detail_transation_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

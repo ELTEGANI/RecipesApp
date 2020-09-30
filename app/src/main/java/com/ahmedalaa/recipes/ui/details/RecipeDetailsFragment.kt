@@ -1,32 +1,36 @@
 package com.ahmedalaa.recipes.ui.details
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ahmedalaa.recipes.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
+import com.ahmedalaa.recipes.databinding.FragmentRecipesDetailsBinding
+import java.util.concurrent.TimeUnit
 
 class RecipeDetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RecipeDetailsFragment()
-    }
-
-    private lateinit var viewModel: RecipeDetailsViewModel
-
+    private lateinit var bindingLayout: FragmentRecipesDetailsBinding
+    val args: RecipeDetailsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_recipes_details, container, false)
+        val view = FragmentRecipesDetailsBinding.inflate(layoutInflater, container, false)
+        this.bindingLayout = view
+        view.recipeItem = args.recipe
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        postponeEnterTransition(250, TimeUnit.MILLISECONDS)
+
+        return view.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RecipeDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 
 }

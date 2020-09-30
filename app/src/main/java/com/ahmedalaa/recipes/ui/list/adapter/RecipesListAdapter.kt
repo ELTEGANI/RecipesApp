@@ -3,6 +3,7 @@ package com.ahmedalaa.recipes.ui.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,15 +13,20 @@ import org.jetbrains.annotations.NotNull
 
 class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
 
-    lateinit var onItemClick: (recipe: Recipe) -> Unit
+    var onItemClick: ((Recipe, ImageView) -> Unit)? = null
 
-    val itemCallback = object : DiffUtil.ItemCallback<Recipe>() {
+
+    fun setOnItemClickListener(listener: (Recipe, ImageView) -> Unit) {
+        onItemClick = listener
+    }
+
+    private val itemCallback = object : DiffUtil.ItemCallback<Recipe>() {
         override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.hashCode() == newItem.hashCode()
         }
 
     }
@@ -49,8 +55,7 @@ class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>()
                 this.recipe = recipe
                 executePendingBindings()
                 root.setOnClickListener {
-                    if (this@RecipesListAdapter::onItemClick.isInitialized)
-                        onItemClick(recipe)
+                    onItemClick?.invoke(recipe, ivRecipeImg)
                 }
             }
         }

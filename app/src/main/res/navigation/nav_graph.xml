@@ -14,10 +14,7 @@
         <action
             android:id="@+id/action_gamesFragment_to_gamesDetailsFragment"
             app:destination="@id/recipeDetailsFragment"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_fade_exit"
-            app:popExitAnim="@anim/fragment_fade_enter"
+
             app:popUpTo="@id/recipeListFragment" />
     </fragment>
     <fragment

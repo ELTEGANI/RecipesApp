@@ -10,4 +10,5 @@
     <string name="calories_title">Calories</string>
     <string name="no_internet">No internet connection</string>
     <string name="retry">Retry</string>
+    <string name="detail_transation_name">recipe_title</string>
 </resources>
