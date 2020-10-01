@@ -5,7 +5,6 @@ sealed class ApiResponse<out T : Any> {
     data class Success<out T : Any>(val data: T?) : ApiResponse<T>()
     data class Error<out T : Any>(val errorMsg: Int,val data: T?) : ApiResponse<T>()
     object InProgress : ApiResponse<Nothing>()
-    object None : ApiResponse<Nothing>()
 
 }
 

@@ -20,15 +20,5 @@ fun <T> Flow<T>.bind(
 }
 
 
-fun <T> Flow<T>.bind(
-    coroutineScope: CoroutineScope, function: ((T) -> Unit)? = null
-) {
-    coroutineScope.launch {
-        this@bind.collect {
-            if (function != null)
-                function(it)
-        }
-    }
 
-}
 

@@ -5,8 +5,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.ahmedalaa.recipes.di.AppModule
-import com.ahmedalaa.recipes.di.MyCustomComponentBuilder
-import javax.inject.Inject
 
 @BindingAdapter("imageUrl")
 fun ImageView.load( link: String) {

@@ -28,7 +28,6 @@
                 android:contentDescription="@string/recipe_img_cd"
                 android:scaleType="fitXY"
                 imageUrl="@{recipeItem.image}"
-                android:transitionName="@string/detail_transation_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -55,7 +54,7 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 hideIfEmpty="@{recipeItem.calories}"
                 android:text="@string/calories_title"
-                style="@style/TextviewHeader"
+                style="@style/TextViewHeader"
                 app:layout_constraintEnd_toEndOf="parent"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +82,7 @@
                 hideIfEmpty="@{recipeItem.fats}"
 
 
-                style="@style/TextviewHeader"
+                style="@style/TextViewHeader"
                 app:layout_constraintEnd_toStartOf="@id/protien_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/protien_tv"
@@ -110,7 +109,7 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 hideIfEmpty="@{recipeItem.proteins}"
                 android:text="@string/proteins_title"
-                style="@style/TextviewHeader"
+                style="@style/TextViewHeader"
                 app:layout_constraintEnd_toEndOf="parent"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +136,7 @@
                 android:text="@string/carbons_title"
                 hideIfEmpty="@{recipeItem.carbos}"
 
-                style="@style/TextviewHeader"
+                style="@style/TextViewHeader"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/protien_tv"
                 app:layout_constraintTop_toTopOf="@id/fats_tv"

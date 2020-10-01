@@ -2,14 +2,13 @@ package com.ahmedalaa.recipes.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.ahmedalaa.recipes.R
 import com.ahmedalaa.recipes.data.local.RecipeDatabase
 import com.ahmedalaa.recipes.data.remote.RecipeApi
-import com.ahmedalaa.recipes.utils.RequestInterceptor
 import com.ahmedalaa.recipes.other.Constant
 import com.ahmedalaa.recipes.repository.IRecipesRepository
 import com.ahmedalaa.recipes.repository.RecipesRepository
+import com.ahmedalaa.recipes.utils.RequestInterceptor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.squareup.moshi.Moshi
@@ -42,7 +41,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMoshi() = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
+
 
     @Singleton
     @Provides
@@ -52,7 +52,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(moshi: Moshi, okHttpClient: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(Constant.BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -60,7 +60,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideGamesApi(retrofit: Retrofit) = retrofit.create(RecipeApi::class.java)
+    fun provideGamesApi(retrofit: Retrofit): RecipeApi = retrofit.create(RecipeApi::class.java)
 
     @Singleton
     @Provides

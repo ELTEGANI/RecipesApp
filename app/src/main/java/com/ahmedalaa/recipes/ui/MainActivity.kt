@@ -2,22 +2,24 @@ package com.ahmedalaa.recipes.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.ahmedalaa.recipes.R
+import com.ahmedalaa.recipes.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ToolbarTitleListener {
 
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
-        NavigationUI.setupWithNavController(toolbar, findNavController(R.id.nav_host_fragment))
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setSupportActionBar(binding.toolbar)
+        setupWithNavController(binding.toolbar, findNavController(R.id.nav_host_fragment))
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -33,4 +35,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun updateTitle(title: String) {
+        binding.title = title
+
+    }
+
+
+}
+
+interface ToolbarTitleListener {
+    fun updateTitle(title: String)
 }

@@ -20,7 +20,7 @@ class RecipesRepository @Inject constructor(
             val dbRecipes = recipeDatabase.recipeDao().getRecipes()
             try {
 
-                val result = recipeApi.fetchRecipeList();
+                val result = recipeApi.fetchRecipeList()
                 if (result.isSuccessful) {
                     val recipes = result.body()
                     if (recipes != null) {
