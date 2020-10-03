@@ -1,14 +1,10 @@
 <resources>
     <string name="app_name">Recipe App</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="loading">Loading…</string>
     <string name="recipe_img_cd">Recipe Image</string>
     <string name="fats_title">Fats</string>
     <string name="proteins_title">Proteins</string>
     <string name="carbons_title">Carbons</string>
     <string name="calories_title">Calories</string>
     <string name="no_internet">No internet connection</string>
-    <string name="retry">Retry</string>
     <string name="recipes">Recipes</string>
 </resources>

@@ -31,12 +31,12 @@ class RecipesRepository @Inject constructor(
                         emit(ApiResponse.Success(dbRecipes))
 
                 } else
-                    emit(ApiResponse.Error(R.string.no_internet,dbRecipes))
+                    emit(ApiResponse.Error(R.string.no_internet))
 
 
             } catch (e: Exception) {
                 Timber.e(e)
-                emit(ApiResponse.Error(R.string.no_internet,dbRecipes))
+                emit(ApiResponse.Error(R.string.no_internet))
 
             }
         }

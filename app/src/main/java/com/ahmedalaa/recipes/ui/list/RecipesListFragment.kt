@@ -69,14 +69,12 @@ class RecipesListFragment : Fragment() {
                 bindingLayout.loadingDialog.hide()
                 adapter.recipe = it
 
-            }.onError { errorMsg: Int, list: List<Recipe>? ->
-                adapter.recipe = list ?: emptyList()
-
+            }.onError { errorMsg: Int ->
                 bindingLayout.loadingDialog.hide()
 
             }
         }
-        (requireActivity() as ToolbarTitleListener).updateTitle(getString(R.string.recipes))
+//        (requireActivity() as ToolbarTitleListener).updateTitle(getString(R.string.recipes))
 
 
     }
