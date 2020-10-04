@@ -76,7 +76,7 @@ class RecipesListFragment : Fragment() {
 
             }
         }
-        (requireActivity() as ToolbarTitleListener).updateTitle(getString(R.string.recipes))
+//        (requireActivity() as ToolbarTitleListener).updateTitle(getString(R.string.recipes))
 
 
     }

@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity(), ToolbarTitleListener {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
         setupWithNavController(binding.toolbar, findNavController(R.id.nav_host_fragment))
+        Navigation.findNavController(this,R.id.nav_host_fragment)
+            .addOnDestinationChangedListener { controller, destination, arguments ->
+            if(destination.id==R.id.recipeListFragment){
+                updateTitle(getString(R.string.app_name))
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -37,7 +43,6 @@ class MainActivity : AppCompatActivity(), ToolbarTitleListener {
 
     override fun updateTitle(title: String) {
         binding.title = title
-
     }
 
 
