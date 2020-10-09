@@ -14,7 +14,7 @@ class RecipesRepository @Inject constructor(
     private val recipeDatabase: RecipeDatabase,
     private val recipeApi: RecipeApi
 ) : IRecipesRepository {
-    override  fun getRecipes(): Flow<ApiResponse<List<Recipe>>> {
+    override fun getRecipes(): Flow<ApiResponse<List<Recipe>>> {
         return flow {
             emit(ApiResponse.InProgress)
             val dbRecipes = recipeDatabase.recipeDao().getRecipes()
@@ -29,15 +29,11 @@ class RecipesRepository @Inject constructor(
                         emit(ApiResponse.Success(recipes))
                     } else
                         emit(ApiResponse.Success(dbRecipes))
-
                 } else
-                    emit(ApiResponse.Error(R.string.no_internet,dbRecipes))
-
-
+                    emit(ApiResponse.Error(R.string.no_internet, dbRecipes))
             } catch (e: Exception) {
                 Timber.e(e)
-                emit(ApiResponse.Error(R.string.no_internet,dbRecipes))
-
+                emit(ApiResponse.Error(R.string.no_internet, dbRecipes))
             }
         }
     }

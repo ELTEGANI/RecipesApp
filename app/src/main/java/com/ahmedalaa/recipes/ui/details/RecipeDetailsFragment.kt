@@ -31,18 +31,14 @@ class RecipeDetailsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = FragmentRecipesDetailsBinding.inflate(layoutInflater, container, false)
         this.bindingLayout = view
         view.recipeItem = args.recipe
 
-
-
         return view.root
     }
-
-
-
 }

@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 fun <T> Flow<T>.bind(
-    coroutineScope: CoroutineScope, liveData: MutableLiveData<T>, function: ((T) -> Unit)? = null
+    coroutineScope: CoroutineScope,
+    liveData: MutableLiveData<T>,
+    function: ((T) -> Unit)? = null
 ) {
     coroutineScope.launch {
         this@bind.collect {
@@ -16,9 +18,4 @@ fun <T> Flow<T>.bind(
                 function(it)
         }
     }
-
 }
-
-
-
-

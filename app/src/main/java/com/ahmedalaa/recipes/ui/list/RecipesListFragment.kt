@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import com.ahmedalaa.recipes.R
 import com.ahmedalaa.recipes.data.model.Recipe
 import com.ahmedalaa.recipes.databinding.FragmentRecipesListBinding
-import com.ahmedalaa.recipes.ui.ToolbarTitleListener
 import com.ahmedalaa.recipes.ui.list.adapter.RecipesListAdapter
 import com.ahmedalaa.recipes.utils.extenstion.hide
 import com.ahmedalaa.recipes.utils.extenstion.show
@@ -27,12 +25,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipesListFragment : Fragment() {
 
-
     private lateinit var bindingLayout: FragmentRecipesListBinding
     private val recipesListViewModel: RecipesListViewModel by viewModels()
     private val adapter = RecipesListAdapter()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = FragmentRecipesListBinding.inflate(layoutInflater, container, false)
@@ -58,7 +56,8 @@ class RecipesListFragment : Fragment() {
             findNavController().navigate(
                 RecipesListFragmentDirections.actionGamesFragmentToGamesDetailsFragment(
                     recipe,
-                ), extras
+                ),
+                extras
             )
         }
 
@@ -68,17 +67,12 @@ class RecipesListFragment : Fragment() {
             }.onSuccess {
                 bindingLayout.loadingDialog.hide()
                 adapter.recipe = it
-
             }.onError { errorMsg: Int, list: List<Recipe>? ->
                 adapter.recipe = list ?: emptyList()
 
                 bindingLayout.loadingDialog.hide()
-
             }
         }
 //        (requireActivity() as ToolbarTitleListener).updateTitle(getString(R.string.recipes))
-
-
     }
-
 }

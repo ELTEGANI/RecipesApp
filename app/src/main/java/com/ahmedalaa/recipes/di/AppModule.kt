@@ -26,10 +26,9 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
-
     @Singleton
     @Provides
-    fun provideRoomDb(@ApplicationContext context: Context):RecipeDatabase =
+    fun provideRoomDb(@ApplicationContext context: Context): RecipeDatabase =
         Room.databaseBuilder(context, RecipeDatabase::class.java, "recipe-db")
             .fallbackToDestructiveMigration().build()
 
@@ -43,12 +42,10 @@ object AppModule {
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder().build()
 
-
     @Singleton
     @Provides
     fun provideGlide(@ApplicationContext context: Context) = Glide.with(context)
         .applyDefaultRequestOptions(RequestOptions().placeholder(R.drawable.progress_animation))
-
 
     @Singleton
     @Provides
@@ -68,5 +65,4 @@ object AppModule {
         recipeDatabase: RecipeDatabase,
         recipeApi: RecipeApi
     ): IRecipesRepository = RecipesRepository(recipeDatabase, recipeApi)
-
 }

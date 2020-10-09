@@ -1,6 +1,10 @@
 package com.ahmedalaa.recipes.data.local
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.ahmedalaa.recipes.data.model.Recipe
 
 @Dao
@@ -16,7 +20,7 @@ interface RecipeDao {
     suspend fun delete(recipe: Recipe)
 
     @Query("select * from recipe")
-    suspend fun getRecipes():List<Recipe>
+    suspend fun getRecipes(): List<Recipe>
 
     @Query("DELETE FROM recipe")
     suspend fun deleteAll()

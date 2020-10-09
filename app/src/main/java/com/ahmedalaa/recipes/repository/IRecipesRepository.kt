@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface IRecipesRepository {
 
-     fun getRecipes(): Flow<ApiResponse<List<Recipe>>>
+    fun getRecipes(): Flow<ApiResponse<List<Recipe>>>
 }

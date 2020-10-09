@@ -1,6 +1,5 @@
 package com.ahmedalaa.recipes.ui.list.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -16,7 +15,6 @@ class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>()
 
     var onItemClick: ((Recipe, ImageView) -> Unit)? = null
 
-
     fun setOnItemClickListener(listener: (Recipe, ImageView) -> Unit) {
         onItemClick = listener
     }
@@ -29,14 +27,12 @@ class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>()
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
-
     }
     private val differ = AsyncListDiffer(this, itemCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
-
 
     var recipe: List<Recipe>
         get() = differ.currentList

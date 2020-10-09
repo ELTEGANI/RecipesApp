@@ -8,6 +8,6 @@ import retrofit2.http.GET
 
 interface RecipeApi {
 
-  @GET("recipes.json")
-  suspend fun fetchRecipeList(): Response<List<Recipe>>
+    @GET("recipes.json")
+    suspend fun fetchRecipeList(): Response<List<Recipe>>
 }

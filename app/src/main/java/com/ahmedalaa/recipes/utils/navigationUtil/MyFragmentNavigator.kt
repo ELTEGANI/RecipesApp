@@ -29,4 +29,3 @@ class MyFragmentNavigator(
         else super.navigate(destination, args, navOptions, navigatorExtras)
     }
 }
-
