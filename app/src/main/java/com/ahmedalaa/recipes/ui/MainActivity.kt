@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), ToolbarTitleListener {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
         setupWithNavController(binding.toolbar, findNavController(R.id.nav_host_fragment))
@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), ToolbarTitleListener {
                     updateTitle(getString(R.string.app_name))
                 }
             }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
