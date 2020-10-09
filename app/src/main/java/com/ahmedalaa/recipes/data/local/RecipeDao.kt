@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.ahmedalaa.recipes.data.model.Recipe
 
+
 @Dao
 interface RecipeDao {
 

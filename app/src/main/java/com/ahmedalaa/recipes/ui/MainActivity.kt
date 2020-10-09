@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), ToolbarTitleListener {
                     updateTitle(getString(R.string.app_name))
                 }
             }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
