@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), ToolbarTitleListener {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
-    binding.toolbar
+        binding.toolbar
         setupWithNavController(binding.toolbar, findNavController(R.id.nav_host_fragment))
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .addOnDestinationChangedListener { controller, destination, arguments ->

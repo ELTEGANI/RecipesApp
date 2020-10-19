@@ -1,6 +1,6 @@
 package com.ahmedalaa.recipes
 
-import org.junit.Assert.assertEquals
+import com.google.common.truth.Truth
 import org.junit.Test
 
 /**
@@ -11,7 +11,8 @@ import org.junit.Test
 
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun `addition return correct answer`() {
+        Truth.assertThat((2+2).toInt()).isEqualTo('4')
     }
+
 }

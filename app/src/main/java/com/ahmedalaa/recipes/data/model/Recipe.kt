@@ -27,7 +27,7 @@ data class Recipe(
     val headline: String?,
     @Json(name = "id")
     @PrimaryKey
-    val id: String,
+    var id: String,
     @Json(name = "image")
     val image: String?,
     @Json(name = "name")
