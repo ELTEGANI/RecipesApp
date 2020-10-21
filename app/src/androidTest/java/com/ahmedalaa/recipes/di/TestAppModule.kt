@@ -22,7 +22,6 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object TestAppModule {
 
-
     @Singleton
     @Provides
     @Named("test-db")
@@ -32,19 +31,16 @@ object TestAppModule {
 
     @Singleton
     @Provides
-    fun provideMockServer()=MockWebServer()
-
-
+    fun provideMockServer() = MockWebServer()
 
     @Singleton
     @Provides
     @Named("test-retrofit")
-    fun provideRetrofit(  moshi: Moshi, okHttpClient: OkHttpClient, mockWebServer: MockWebServer): Retrofit = Retrofit.Builder()
+    fun provideRetrofit(moshi: Moshi, okHttpClient: OkHttpClient, mockWebServer: MockWebServer): Retrofit = Retrofit.Builder()
         .baseUrl(mockWebServer.url("/"))
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
-
 
     @Singleton
     @Provides
@@ -60,5 +56,4 @@ object TestAppModule {
         @Named("test-recipeApi")
         recipeApi: RecipeApi
     ): RecipesRepository = RecipesRepository(recipeDatabase, recipeApi)
-
 }

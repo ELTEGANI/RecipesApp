@@ -1,10 +1,6 @@
 package com.ahmedalaa.recipes
 
 import com.ahmedalaa.recipes.data.model.Recipe
-import okio.buffer
-import okio.source
-import java.nio.charset.Charset
-
 
 object TestUtils {
     val recipe = Recipe(
@@ -37,9 +33,7 @@ object TestUtils {
         "https://img.hellofresh.com/f_auto,q_auto,w_300/hellofresh_s3/image/533143aaff604d567f8b4571.jpg",
         "PT35M"
     )
-    fun recipesList():List<Recipe>{
+    fun recipesList(): List<Recipe> {
         return listOf(recipe, recipe2)
     }
-
-
 }

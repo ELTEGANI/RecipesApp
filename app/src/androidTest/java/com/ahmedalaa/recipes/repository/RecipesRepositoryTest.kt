@@ -4,32 +4,24 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
 import androidx.test.runner.AndroidJUnit4
 import com.ahmedalaa.recipes.R
-import com.ahmedalaa.recipes.TestUtils
-import com.ahmedalaa.recipes.data.local.RecipeDao
 import com.ahmedalaa.recipes.data.local.RecipeDatabase
 import com.ahmedalaa.recipes.data.model.Recipe
 import com.ahmedalaa.recipes.data.remote.RecipeApi
-import com.ahmedalaa.recipes.di.AppModule
 import com.ahmedalaa.recipes.enqueueRequest
 import com.ahmedalaa.recipes.utils.ApiResponse
 import com.ahmedalaa.recipes.utils.Utils
 import com.google.common.truth.Truth
 import com.squareup.moshi.Moshi
-import dagger.Binds
-import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
-import org.junit.Test
-
-import org.junit.Assert.*
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
@@ -52,13 +44,10 @@ class RecipesRepositoryTest {
     @Named("test-recipeApi")
     lateinit var recipeApi: RecipeApi
 
-
-
     @Inject
     lateinit var mockWebServer: MockWebServer
 
-    @Inject    lateinit var moshi: Moshi
-
+    @Inject lateinit var moshi: Moshi
 
     @Before
     fun setUp() {
@@ -70,24 +59,33 @@ class RecipesRepositoryTest {
     }
 
     @Test
-    fun getRecipesReturnSuccessData():Unit= runBlocking {
-        mockWebServer.enqueueRequest("response.json",200)
-        val recipesRepository=RecipesRepository(db,recipeApi)
+    fun getRecipesReturnSuccessData(): Unit = runBlocking {
+        mockWebServer.enqueueRequest("response.json", 200)
+        val recipesRepository = RecipesRepository(db, recipeApi)
 
         val response = recipesRepository.getRecipes().toList()
         mockWebServer.takeRequest()
-            Truth.assertThat(response).containsExactly(ApiResponse.InProgress,ApiResponse.Success(
-                Utils.readFileResponseToListOfObject<Recipe>("response.json",moshi)!!))
+        Truth.assertThat(response).containsExactly(
+            ApiResponse.InProgress,
+            ApiResponse.Success(
+                Utils.readFileResponseToListOfObject<Recipe>("response.json", moshi)!!
+            )
+        )
     }
 
     @Test
-    fun getRecipesReturnErrorData():Unit= runBlocking {
-        mockWebServer.enqueueRequest("response.json",404)
-        val recipesRepository=RecipesRepository(db,recipeApi)
+    fun getRecipesReturnErrorData(): Unit = runBlocking {
+        mockWebServer.enqueueRequest("response.json", 404)
+        val recipesRepository = RecipesRepository(db, recipeApi)
 
         val response = recipesRepository.getRecipes().toList()
         mockWebServer.takeRequest()
-        Truth.assertThat(response).containsExactly(ApiResponse.InProgress,ApiResponse.Error(
-            R.string.no_internet, listOf<Recipe>()))
+        Truth.assertThat(response).containsExactly(
+            ApiResponse.InProgress,
+            ApiResponse.Error(
+                R.string.no_internet,
+                listOf<Recipe>()
+            )
+        )
     }
 }

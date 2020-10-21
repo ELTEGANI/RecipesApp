@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -24,25 +24,28 @@ import dagger.hilt.android.AndroidEntryPoint
  * A fragment representing a list of Items.
  */
 @AndroidEntryPoint
-class RecipesListFragment : Fragment() {
+class RecipesListFragment constructor(
+    private var recipeAdapter: RecipesListAdapter,
+    var recipesListViewModel: RecipesListViewModel? = null
+) : Fragment() {
 
     private lateinit var bindingLayout: FragmentRecipesListBinding
-    private val recipesListViewModel: RecipesListViewModel by viewModels()
-    private val adapter = RecipesListAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = FragmentRecipesListBinding.inflate(layoutInflater, container, false)
-
+        recipesListViewModel = recipesListViewModel ?: ViewModelProvider(requireActivity()).get(
+            RecipesListViewModel::class.java
+        )
         this.bindingLayout = view
         return view.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindingLayout.list.adapter = adapter
+        bindingLayout.list.adapter = recipeAdapter
 
         postponeEnterTransition()
         bindingLayout.list.viewTreeObserver.addOnPreDrawListener {
@@ -50,30 +53,30 @@ class RecipesListFragment : Fragment() {
             true
         }
 
-        adapter.setOnItemClickListener { recipe: Recipe, imageView: ImageView ->
+        recipeAdapter.setOnItemClickListener { recipe: Recipe, imageView: ImageView ->
             val extras = FragmentNavigatorExtras(
                 imageView to (recipe.image ?: "aa")
             )
-            findNavController().navigate(
-                RecipesListFragmentDirections.actionGamesFragmentToGamesDetailsFragment(
-                    recipe,
-                ),
-                extras
-            )
+            findNavController()
+                .navigate(RecipesListFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment(recipe), extras)
         }
 
-        recipesListViewModel.recipes.observe(viewLifecycleOwner) { it ->
+        recipesListViewModel?.recipes?.observe(viewLifecycleOwner) { it ->
             it.onProgress {
+                bindingLayout.list.hide()
                 bindingLayout.loadingDialog.show()
             }.onSuccess {
+                if (it.isEmpty()) {
+                    bindingLayout.noDataAlert.show()
+                    bindingLayout.list.hide()
+                } else
+                    bindingLayout.list.show()
                 bindingLayout.loadingDialog.hide()
-                adapter.recipe = it
+                recipeAdapter.recipe = it
             }.onError { errorMsg: Int, list: List<Recipe>? ->
-                adapter.recipe = list ?: emptyList()
-
+                recipeAdapter.recipe = list ?: emptyList()
                 bindingLayout.loadingDialog.hide()
             }
         }
-//        (requireActivity() as ToolbarTitleListener).updateTitle(getString(R.string.recipes))
     }
 }

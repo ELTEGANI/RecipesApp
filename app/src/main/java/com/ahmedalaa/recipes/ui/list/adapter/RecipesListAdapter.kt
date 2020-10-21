@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ahmedalaa.recipes.data.model.Recipe
 import com.ahmedalaa.recipes.databinding.ItemRecipeBinding
 import org.jetbrains.annotations.NotNull
+import javax.inject.Inject
 
-class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
+class RecipesListAdapter @Inject constructor() :
+    RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
 
     var onItemClick: ((Recipe, ImageView) -> Unit)? = null
 

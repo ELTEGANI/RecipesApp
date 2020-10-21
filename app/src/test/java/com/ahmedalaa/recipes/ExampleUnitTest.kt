@@ -12,7 +12,6 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun `addition return correct answer`() {
-        Truth.assertThat((2+2).toInt()).isEqualTo('4')
+        Truth.assertThat((2 + 2).toInt()).isEqualTo('4')
     }
-
 }

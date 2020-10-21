@@ -6,13 +6,11 @@ import com.ahmedalaa.recipes.R
 import com.ahmedalaa.recipes.data.local.RecipeDatabase
 import com.ahmedalaa.recipes.data.remote.RecipeApi
 import com.ahmedalaa.recipes.other.Constant
-import com.ahmedalaa.recipes.repository.IRecipesRepository
 import com.ahmedalaa.recipes.repository.RecipesRepository
 import com.ahmedalaa.recipes.utils.RequestInterceptor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.squareup.moshi.Moshi
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +19,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
