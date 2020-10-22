@@ -1,8 +1,8 @@
 package com.ahmedalaa.recipes.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import androidx.test.runner.AndroidJUnit4
 import com.ahmedalaa.recipes.TestUtils
 import com.google.common.truth.Truth
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -22,7 +22,7 @@ import javax.inject.Named
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
 class RecipeDaoTest {
-    @get:Rule()
+    @get:Rule
     var hiltRule = HiltAndroidRule(this)
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
@@ -31,12 +31,11 @@ class RecipeDaoTest {
     @Named("test-db")
     lateinit var db: RecipeDatabase
 
-    lateinit var recipeDao: RecipeDao
+    private lateinit var recipeDao: RecipeDao
 
     @Before
     fun setUp() {
         hiltRule.inject()
-//        db = TestAppModule.provideRoomDb(ApplicationProvider.getApplicationContext())
         recipeDao = db.recipeDao()
     }
 

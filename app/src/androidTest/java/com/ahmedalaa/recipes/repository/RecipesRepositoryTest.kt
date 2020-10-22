@@ -1,8 +1,8 @@
 package com.ahmedalaa.recipes.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import androidx.test.runner.AndroidJUnit4
 import com.ahmedalaa.recipes.R
 import com.ahmedalaa.recipes.data.local.RecipeDatabase
 import com.ahmedalaa.recipes.data.model.Recipe
@@ -31,7 +31,7 @@ import javax.inject.Named
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
 class RecipesRepositoryTest {
-    @get:Rule()
+    @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
@@ -59,7 +59,7 @@ class RecipesRepositoryTest {
     }
 
     @Test
-    fun getRecipesReturnSuccessData(): Unit = runBlocking {
+    fun fetchRecipes_returnsSuccessData(): Unit = runBlocking {
         mockWebServer.enqueueRequest("response.json", 200)
         val recipesRepository = RecipesRepository(db, recipeApi)
 
@@ -74,7 +74,7 @@ class RecipesRepositoryTest {
     }
 
     @Test
-    fun getRecipesReturnErrorData(): Unit = runBlocking {
+    fun fetchRecipes_returnsErrorData(): Unit = runBlocking {
         mockWebServer.enqueueRequest("response.json", 404)
         val recipesRepository = RecipesRepository(db, recipeApi)
 

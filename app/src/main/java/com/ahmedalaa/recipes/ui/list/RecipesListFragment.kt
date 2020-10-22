@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.ahmedalaa.recipes.data.model.Recipe
 import com.ahmedalaa.recipes.databinding.FragmentRecipesListBinding
+import com.ahmedalaa.recipes.other.Constant
 import com.ahmedalaa.recipes.ui.list.adapter.RecipesListAdapter
 import com.ahmedalaa.recipes.utils.extenstion.hide
 import com.ahmedalaa.recipes.utils.extenstion.show
@@ -55,7 +55,7 @@ class RecipesListFragment constructor(
 
         recipeAdapter.setOnItemClickListener { recipe: Recipe, imageView: ImageView ->
             val extras = FragmentNavigatorExtras(
-                imageView to (recipe.image ?: "aa")
+                imageView to (recipe.image ?: Constant.IMAGE_TRANSACTION_NAME)
             )
             findNavController()
                 .navigate(RecipesListFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment(recipe), extras)
@@ -73,7 +73,7 @@ class RecipesListFragment constructor(
                     bindingLayout.list.show()
                 bindingLayout.loadingDialog.hide()
                 recipeAdapter.recipe = it
-            }.onError { errorMsg: Int, list: List<Recipe>? ->
+            }.onError { _: Int, list: List<Recipe>? ->
                 recipeAdapter.recipe = list ?: emptyList()
                 bindingLayout.loadingDialog.hide()
             }

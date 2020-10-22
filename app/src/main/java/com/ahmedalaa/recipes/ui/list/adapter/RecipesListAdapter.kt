@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmedalaa.recipes.data.model.Recipe
 import com.ahmedalaa.recipes.databinding.ItemRecipeBinding
+import com.ahmedalaa.recipes.other.Constant
 import org.jetbrains.annotations.NotNull
 import javax.inject.Inject
 
@@ -52,7 +53,7 @@ class RecipesListAdapter @Inject constructor() :
         fun bind(recipe: Recipe) {
             itemRecipeBinding.apply {
                 this.recipe = recipe
-                ViewCompat.setTransitionName(ivRecipeImg, recipe.image ?: "aa")
+                ViewCompat.setTransitionName(ivRecipeImg, recipe.image ?: Constant.IMAGE_TRANSACTION_NAME)
 
                 executePendingBindings()
 

@@ -1,8 +1,10 @@
+@file:Suppress("unused")
 package com.ahmedalaa.recipes
 
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import com.github.tmurakami.dexopener.DexOpener
 import dagger.hilt.android.testing.HiltTestApplication
 
 class CustomTestRunner : AndroidJUnitRunner() {
@@ -12,6 +14,7 @@ class CustomTestRunner : AndroidJUnitRunner() {
         className: String?,
         context: Context?
     ): Application {
+        DexOpener.install(this)
         return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
 }
