@@ -8,14 +8,10 @@ jobs:
       - uses: actions/checkout@v1
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - name: Build the app
-        run: ./gradlew build
       - name: setup Java sdk v1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: ktlintCheck
-        uses: ./gradlew ktlintCheck
       - name: run unit test
         run : ./gradlew testDebugUnitTest
       - name: run instrumentation tests
