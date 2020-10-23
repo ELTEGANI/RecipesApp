@@ -1,7 +1,6 @@
 package com.ahmedalaa.recipes.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.ahmedalaa.recipes.R
 import com.ahmedalaa.recipes.data.local.RecipeDatabase
@@ -22,13 +21,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
 @SmallTest
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
 class RecipesRepositoryTest {
     @get:Rule
