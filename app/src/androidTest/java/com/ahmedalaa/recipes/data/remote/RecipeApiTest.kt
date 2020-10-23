@@ -1,7 +1,6 @@
 package com.ahmedalaa.recipes.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.ahmedalaa.recipes.MainCoroutinesRule
 import com.ahmedalaa.recipes.enqueueRequest
@@ -15,7 +14,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Named

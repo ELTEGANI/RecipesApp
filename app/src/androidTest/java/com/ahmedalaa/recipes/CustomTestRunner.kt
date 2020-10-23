@@ -16,7 +16,7 @@ class CustomTestRunner : AndroidJUnitRunner() {
         context: Context?
     ): Application {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P)
-        DexOpener.install(this)
+            DexOpener.install(this)
         return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
 }
