@@ -18,7 +18,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "com.ahmedalaa.recipes.CustomTestRunner"
     }
-
+    lintOptions {
+        abortOnError false
+    }
     buildTypes {
         release {
             minifyEnabled false
