@@ -28,7 +28,6 @@ import javax.inject.Named
 
 @SmallTest
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
 class RecipesRepositoryTest {
     @get:Rule

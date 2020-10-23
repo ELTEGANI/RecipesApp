@@ -19,10 +19,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
 @HiltAndroidTest
 @MediumTest
-@RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
 class RecipeDetailsFragmentTest {
     @get:Rule

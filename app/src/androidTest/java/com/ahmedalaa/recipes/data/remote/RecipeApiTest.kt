@@ -23,7 +23,6 @@ import kotlin.jvm.Throws
 
 @SmallTest
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
 class RecipeApiTest {
     @get:Rule

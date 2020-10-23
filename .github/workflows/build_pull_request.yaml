@@ -13,7 +13,7 @@ jobs:
         with:
           java-version: 1.8
       - name: ktlintCheck
-        uses: ./gradlew app:ktlintcheck --daemon
+        run: ./gradlew ktlintcheck
       - name: run unit test
         run : ./gradlew testDebugUnitTest
       - name: run instrumentation tests
