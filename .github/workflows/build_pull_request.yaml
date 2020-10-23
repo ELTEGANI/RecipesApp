@@ -6,6 +6,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Make gradlew executable
+            run: chmod +x ./gradlew
       - name: Build the app
         run: ./gradlew build
       - name: setup Java sdk v1.8
