@@ -12,6 +12,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: ktlintCheck
+        uses: ./gradlew app:ktlintcheck --daemon
       - name: run unit test
         run : ./gradlew testDebugUnitTest
       - name: run instrumentation tests
@@ -48,3 +50,4 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
+
