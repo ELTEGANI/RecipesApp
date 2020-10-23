@@ -8,16 +8,24 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.ahmedalaa.recipes.R
 import com.ahmedalaa.recipes.databinding.ActivityMainBinding
+import com.ahmedalaa.recipes.utils.ReceiptFragmentFactory
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), ToolbarTitleListener {
 
     private lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var fragmentFactory: ReceiptFragmentFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportFragmentManager.fragmentFactory = fragmentFactory
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
+        binding.toolbar
         setupWithNavController(binding.toolbar, findNavController(R.id.nav_host_fragment))
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .addOnDestinationChangedListener { controller, destination, arguments ->
